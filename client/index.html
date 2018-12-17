@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Welcome</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="js/index.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl" class="container-fluid">
+    <div class="" ng-include="'header.html'"></div>
+    <div class="row">
+        <div class="col-lg-2">
+            <button class="btn btn-block" data-target="#toans" data-toggle="collapse" ng-click="getAllToan()">
+                Toán
+            </button>
+            <div id="toans" class="collapse">
+                <div class="" ng-repeat="toan in toanList">
+                    <div class="btn btn-block text-left" ng-click="getToanDetails(toan.id)">{{toan.ten}}</div>
+                </div>
+            </div>
+            <button class="btn btn-block" data-target="#khois" data-toggle="collapse" ng-click="getAllKhoi()">
+                Khối
+            </button>
+            <div id="khois" class="collapse">
+                <div class="" ng-repeat="khoi in khoiList">
+                    <div class="btn btn-block text-left">{{khoi.ten}}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-10" ng-switch="tableType">
+            <div ng-switch-when="toan">
+                <div  ng-include="'table/toan.html'"></div>
+            </div>
+            <div ng-switch-when="khoi">
+                <div ng-include="'table/khoi.html'"></div>
+            </div>
+            <div ng-switch-when="toanDetail">
+                <div ng-include="'table/toanDetail.html'"></div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center" ng-include="'footer.html'"></footer>
+</body>
+</html>
